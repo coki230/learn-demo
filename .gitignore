@@ -1,0 +1,23 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+src/main/java/bytebuddy/agent/
+src/main/java/grpc/
+src/main/resources/
+src/test/
+target/classes/Function.class
+target/classes/bytebuddy/DoNoLoadClass.class
+target/classes/bytebuddy/DynamicTypeDemo$GreetingInterceptor.class
+target/classes/bytebuddy/DynamicTypeDemo.class
+target/classes/bytebuddy/FirstDemo.class
+target/classes/bytebuddy/Redefine.class
+target/classes/bytebuddy/foo/
+target/classes/jvm/PrintCompilation.class
+target/classes/kafka/
+target/generated-sources/
