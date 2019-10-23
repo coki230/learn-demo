@@ -1,0 +1,51 @@
+// 指定proto格式
+syntax = "proto3";
+// 一些生成代码的设置
+option java_multiple_files = true; // 以外部类模式生成
+option java_package = "com.coki.route"; // 所在包名
+option java_outer_classname = "RouteProto"; // 最外层类名称
+
+// 定义服务
+service RouteGuide{
+    // 得到指定点的feature
+    // 一个简单的RPC， 客户端使用存根发送请求到服务器并等待响应返回，就像平常的函数调用一样。
+    rpc GetFeature(Point) returns(Feature) {}
+}
+
+// 定义传递对象
+// 代表经纬度
+message Point {
+    int32 latitude = 1;
+    int32 longitude = 2;
+}
+
+// 由两个点确定的一个方块
+message Rectangle{
+    Point lo = 1;
+    Point hi = 2;
+}
+
+// 某一个位置的名称
+message Feature {
+    string name = 1;
+    Point location = 2;
+}
+
+// 在RPC里不使用，为了保存到硬盘的时候序列化
+message FeatureDatabase {
+    repeated Feature feature = 1;
+}
+
+// 给某一点发送信息
+message RouteNote{
+    Point location = 1;
+    string message = 2;
+}
+
+// 记录收到的信息
+message RouteSummary{
+    int32 point_count = 1;
+    int32 feature_count = 2;
+    int32 distance = 3;
+    int32 elapsed_time = 4;
+}
