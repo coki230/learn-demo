@@ -1,5 +1,6 @@
 package hello;
 
+import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.apache.commons.net.telnet.TelnetClient;
@@ -9,16 +10,29 @@ import org.apache.skywalking.apm.network.language.agent.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.net.URI;
 
 public class JVMTest {
-    public static void main(String[] args) throws IOException {
-        tel();
+    public static void main(String[] args) throws Exception {
+//        tel();
 
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("172.21.45.117", 12800).usePlaintext(true).build();
+//        String authority = new URI(null, null, "cloud-monitor", 11800, null, null, null).getAuthority();
+//        System.out.println(authority);
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("cloud-monitor", 11800).usePlaintext(true).build();
+
+//        GRPCChannelManager grpcChannelManager = new GRPCChannelManager();
+//        grpcChannelManager.init();
+//        Channel channel = grpcChannelManager.getChannel();
+
+
+//        ManagedChannelBuilder channelBuilder = NettyChannelBuilder.forAddress("cloud-monitor", 11800);
+//        Channel channel = channelBuilder.build();
 
         JVMMetricsServiceGrpc.JVMMetricsServiceBlockingStub stub = JVMMetricsServiceGrpc.newBlockingStub(channel);
 
+        System.out.println("sending info");
         send(stub);
+        System.out.println("send ok");
     }
 
     private static void tel() throws IOException {
